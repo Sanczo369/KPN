@@ -4,11 +4,12 @@ def main():
     root=Tk()
     root.title('GRA "PAPIER, KAMIEŃ, NOŻYCZKI"')
     root.iconbitmap("logo.ico")
-    root.geometry("900x900")
+    root.geometry("641x412")
     img1=ImageTk.PhotoImage(Image.open("papier.jpg"))
     img2=ImageTk.PhotoImage(Image.open("kamien.jpg"))
     img3=ImageTk.PhotoImage(Image.open("nozyczki.jpg"))
 
+    #  element
     tilte_label=Label(root, text='GRA "PAPIER, KAMIEŃ, NOŻYCZKI"', font=("Arial", 20))
     choose_label=Label(root,text="PROSZĘ, WYBIERZ:",font=("Arial", 10))
     frame= LabelFrame(root, pady=10, padx=10)
@@ -22,6 +23,20 @@ def main():
     pick1.grid(row=1, column=1)
     pick2.grid(row=1, column=2)
     pick3.grid(row=1, column=3)
+
+    # score element
+    score = LabelFrame(root, text="AKTUALNE WYNIKI", pady=10, padx=10)
+    game_label = Label(score, text="liczba gier:")
+    win_label = Label(score, text="wygranych:")
+    lose_label = Label(score, text="przegranych:")
+    draw_label = Label(score, text="remisów:")
+    # score element position
+    score.grid(row=3, column=1, sticky=E)
+    game_label.grid(row=0, column=0, sticky=W)
+    win_label.grid(row=1, column=0, sticky=W)
+    lose_label.grid(row=2, column=0, sticky=W)
+    draw_label.grid(row=3, column=0, sticky=W)
+
 
 
 
