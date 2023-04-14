@@ -4,7 +4,7 @@ def main():
     root=Tk()
     root.title('GRA "PAPIER, KAMIEŃ, NOŻYCZKI"')
     root.iconbitmap("logo.ico")
-    root.geometry("641x412")
+    root.geometry("641x522")
     img1=ImageTk.PhotoImage(Image.open("papier.jpg"))
     img2=ImageTk.PhotoImage(Image.open("kamien.jpg"))
     img3=ImageTk.PhotoImage(Image.open("nozyczki.jpg"))
@@ -24,6 +24,10 @@ def main():
     pick2.grid(row=1, column=2)
     pick3.grid(row=1, column=3)
 
+    # play button
+    play_btn = Button(frame, text="PLAY", font=("Arial", 20, "bold"), borderwidth=2, relief="solid", padx=100, pady=5)
+    play_btn.grid(row=3, columnspan=4,pady=20)
+
     # score element
     score = LabelFrame(root, text="AKTUALNE WYNIKI", pady=10, padx=10)
     game_label = Label(score, text="liczba gier:")
@@ -31,7 +35,7 @@ def main():
     lose_label = Label(score, text="przegranych:")
     draw_label = Label(score, text="remisów:")
     # score element position
-    score.grid(row=3, column=1, sticky=E)
+    score.grid(row=4, column=1, sticky=E)
     game_label.grid(row=0, column=0, sticky=W)
     win_label.grid(row=1, column=0, sticky=W)
     lose_label.grid(row=2, column=0, sticky=W)
@@ -43,7 +47,7 @@ def main():
     ai_pick_label = Label(result, text="Wybór komputera:")
     winer_label = Label(result, text="Zwycięzca gry:",font=("Arial",15))
     # game result position
-    result.grid(row=3, column=0, sticky=W)
+    result.grid(row=4, column=0, sticky=W)
     player_pick_label.grid(row=0, column=0)
     ai_pick_label.grid(row=1, column=0)
     winer_label.grid(row=2, column=0)
