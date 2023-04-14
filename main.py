@@ -1,8 +1,28 @@
 import random
 from tkinter import *
 from PIL import ImageTk, Image
+
+def player_pick(pick):
+    if pick == "papier":
+        pick1.config(bg ="red")
+        pick2.config(bg ="white")
+        pick3.config(bg ="white")
+        playerHand = "papier"
+        return playerHand
+    elif pick == "kamien":
+        pick1.config(bg ="white")
+        pick2.config(bg ="red")
+        pick3.config(bg ="white")
+        playerHand = "kamien"
+        return playerHand
+    else:
+        pick1.config(bg ="white")
+        pick2.config(bg ="white")
+        pick3.config(bg ="red")
+        playerHand = "nozyczki"
+        return playerHand
 def ai_pick(aiHand):
-    tab=['stone','paper', 'scissors']
+    tab=['papier','kamien', 'nozyczki']
     i=random.randint(0,len(tab)-1)
     print(tab[i])
     aiHand=tab[i]
@@ -11,7 +31,7 @@ def ai_pick(aiHand):
 def checkResult(player, ai):
     if player == ai:
         return 'draw'
-    elif (player=='papier' and ai=='kamień') or (player=='kamien' and ai=='nozyczki') or (player=='nozyczki' and ai =='papier'):
+    elif (player=='papier' and ai=='kamien') or (player=='kamien' and ai=='nozyczki') or (player=='nozyczki' and ai =='papier'):
         return "win"
     else:
         return 'loss'
@@ -19,6 +39,10 @@ def checkResult(player, ai):
 
 def main():
     global aiHand
+    global pick1
+    global pick2
+    global pick3
+    global playerHand
     numbers=0
     wins=0
     losses=0
@@ -33,14 +57,14 @@ def main():
     img1=ImageTk.PhotoImage(Image.open("papier.jpg"))
     img2=ImageTk.PhotoImage(Image.open("kamien.jpg"))
     img3=ImageTk.PhotoImage(Image.open("nozyczki.jpg"))
-
+    var = StringVar()
     #  element
     tilte_label=Label(root, text='GRA "PAPIER, KAMIEŃ, NOŻYCZKI"', font=("Comic Sans MS", 20, "bold"))
-    choose_label=Label(root,text="PROSZĘ, WYBIERZ:",font=("Arial", 10))
+    choose_label=Label(root,text="PROSZĘ, WYBIERZ:", font=("Arial", 10))
     frame= LabelFrame(root, pady=10, padx=10)
-    pick1=Button(frame, image=img1)
-    pick2=Button(frame, image=img2)
-    pick3=Button(frame, image=img3)
+    pick1=Button(frame, image=img1,borderwidth=1, relief="solid", bg="white", command=lambda:player_pick("papier"))
+    pick2=Button(frame, image=img2,borderwidth=1, relief="solid", bg="white", command=lambda:player_pick("kamien"))
+    pick3=Button(frame, image=img3,borderwidth=1, relief="solid", bg="white", command=lambda:player_pick("nozyczki"))
 
     tilte_label.grid(row=0, columnspan=2, sticky=N)
     choose_label.grid(row=1, columnspan=2)
@@ -76,10 +100,6 @@ def main():
     player_pick_label.grid(row=0, column=0)
     ai_pick_label.grid(row=1, column=0)
     winer_label.grid(row=2, column=0)
-
-
-
-
 
     root.mainloop()
 if __name__ == '__main__':
