@@ -10,7 +10,7 @@ def main():
     img3=ImageTk.PhotoImage(Image.open("nozyczki.jpg"))
 
     #  element
-    tilte_label=Label(root, text='GRA "PAPIER, KAMIEŃ, NOŻYCZKI"', font=("Arial", 20))
+    tilte_label=Label(root, text='GRA "PAPIER, KAMIEŃ, NOŻYCZKI"', font=("Comic Sans MS", 20, "bold"))
     choose_label=Label(root,text="PROSZĘ, WYBIERZ:",font=("Arial", 10))
     frame= LabelFrame(root, pady=10, padx=10)
     pick1=Button(frame, image=img1)
@@ -37,6 +37,16 @@ def main():
     lose_label.grid(row=2, column=0, sticky=W)
     draw_label.grid(row=3, column=0, sticky=W)
 
+    # game result element
+    result = LabelFrame(root, text="WYNIKI GRY", pady=10, padx=190)
+    player_pick_label = Label(result, text="Twój wybór:")
+    ai_pick_label = Label(result, text="Wybór komputera:")
+    winer_label = Label(result, text="Zwycięzca gry:",font=("Arial",15))
+    # game result position
+    result.grid(row=3, column=0, sticky=W)
+    player_pick_label.grid(row=0, column=0)
+    ai_pick_label.grid(row=1, column=0)
+    winer_label.grid(row=2, column=0)
 
 
 
