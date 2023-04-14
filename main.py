@@ -1,12 +1,20 @@
 import random
 from tkinter import *
 from PIL import ImageTk, Image
-def ai_pick():
+def ai_pick(aiHand):
     tab=['stone','paper', 'scissors']
     i=random.randint(0,len(tab)-1)
     print(tab[i])
+    aiHand=tab[i]
+    return aiHand
 
-
+def checkResult(player, ai):
+    if player == ai:
+        return 'draw'
+    elif (player=='papier' and ai=='kamień') or (player=='kamien' and ai=='nozyczki') or (player=='nozyczki' and ai =='papier'):
+        return "win"
+    else:
+        return 'loss'
 
 
 def main():
@@ -42,7 +50,7 @@ def main():
     pick3.grid(row=1, column=3)
 
     # play button
-    play_btn = Button(frame, text="PLAY", font=("Arial", 20, "bold"), borderwidth=2, relief="solid", padx=100, pady=5, command=ai_pick)
+    play_btn = Button(frame, text="PLAY", font=("Arial", 20, "bold"), borderwidth=2, relief="solid", padx=100, pady=5, command=lambda: ai_pick(aiHand))
     play_btn.grid(row=3, columnspan=4,pady=20)
 
     # score element
@@ -62,7 +70,7 @@ def main():
     result = LabelFrame(root, text="WYNIKI GRY", pady=10, padx=190)
     player_pick_label = Label(result, text="Twój wybór:"+playerHand)
     ai_pick_label = Label(result, text="Wybór komputera:"+aiHand)
-    winer_label = Label(result, text="Zwycięzca gry:",font=("Arial",15))
+    winer_label = Label(result, text="Zwycięzca gry:", font=("Arial",15))
     # game result position
     result.grid(row=4, column=0, sticky=W)
     player_pick_label.grid(row=0, column=0)
