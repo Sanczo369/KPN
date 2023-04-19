@@ -24,21 +24,29 @@ def player_pick(pick):
 
     player_pick_label = Label(result, text="Twój wybór:" + playerHand)
     player_pick_label.grid(row=0, column=0)
+    return playerHand
 
-def ai_pick(aiHand):
+def ai_pick():
     tab=['papier','kamien', 'nozyczki']
     i=random.randint(0,len(tab)-1)
-    print(tab[i])
     aiHand=tab[i]
     return aiHand
 
-def checkResult(player, ai):
+def checkResult(player):
+    player=player_pick(player)
+    ai=ai_pick()
     if player == ai:
-        return 'draw'
+        aiHand='draw'
     elif (player=='papier' and ai=='kamien') or (player=='kamien' and ai=='nozyczki') or (player=='nozyczki' and ai =='papier'):
-        return "win"
+        aiHand="win"
+        winer_label = Label(result, text="Zwycięzca gry:Gracz", font=("Arial", 15))
+        winer_label.grid(row=2, column=0)
     else:
-        return 'loss'
+        aiHand='loss'
+        winer_label = Label(result, text="Zwycięzca gry:AI", font=("Arial", 15))
+        winer_label.grid(row=2, column=0)
+    ai_pick_label = Label(result, text="Wybór komputera:"+ai)
+    ai_pick_label.grid(row=1, column=0)
 
 
 def main():
@@ -48,6 +56,8 @@ def main():
     global pick3
     global playerHand
     global result
+    global ai_pick_label
+    global winer_label
     numbers=0
     wins=0
     losses=0
@@ -79,7 +89,7 @@ def main():
     pick3.grid(row=1, column=3)
 
     # play button
-    play_btn = Button(frame, text="PLAY", font=("Arial", 20, "bold"), borderwidth=2, relief="solid", padx=100, pady=5, command=lambda: ai_pick(aiHand))
+    play_btn = Button(frame, text="PLAY", font=("Arial", 20, "bold"), borderwidth=2, relief="solid", padx=100, pady=5, command=lambda: checkResult(playerHand))
     play_btn.grid(row=3, columnspan=4,pady=20)
 
     # score element
