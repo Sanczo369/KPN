@@ -8,19 +8,23 @@ def player_pick(pick):
         pick2.config(bg ="white")
         pick3.config(bg ="white")
         playerHand = "papier"
-        return playerHand
+
     elif pick == "kamien":
         pick1.config(bg ="white")
         pick2.config(bg ="red")
         pick3.config(bg ="white")
         playerHand = "kamien"
-        return playerHand
+
+
     else:
         pick1.config(bg ="white")
         pick2.config(bg ="white")
         pick3.config(bg ="red")
         playerHand = "nozyczki"
-        return playerHand
+
+    player_pick_label = Label(result, text="Twój wybór:" + playerHand)
+    player_pick_label.grid(row=0, column=0)
+
 def ai_pick(aiHand):
     tab=['papier','kamien', 'nozyczki']
     i=random.randint(0,len(tab)-1)
@@ -43,6 +47,7 @@ def main():
     global pick2
     global pick3
     global playerHand
+    global result
     numbers=0
     wins=0
     losses=0
