@@ -9,6 +9,7 @@ def player_pick(pick):
         pick3.config(bg ="white")
         playerHand = "papier"
 
+
     elif pick == "kamien":
         pick1.config(bg ="white")
         pick2.config(bg ="red")
@@ -24,7 +25,6 @@ def player_pick(pick):
 
     player_pick_label = Label(result, text="Twój wybór:" + playerHand)
     player_pick_label.grid(row=0, column=0)
-    return playerHand
 
 def ai_pick():
     tab=['papier','kamien', 'nozyczki']
@@ -32,11 +32,14 @@ def ai_pick():
     aiHand=tab[i]
     return aiHand
 
-def checkResult(player):
-    player=player_pick(player)
+def checkResult(pick,numbers):
+    numbers+=1
+    player=player_pick(pick)
     ai=ai_pick()
     if player == ai:
         aiHand='draw'
+        winer_label = Label(result, text="Remis", font=("Arial", 15))
+        winer_label.grid(row=2, column=0)
     elif (player=='papier' and ai=='kamien') or (player=='kamien' and ai=='nozyczki') or (player=='nozyczki' and ai =='papier'):
         aiHand="win"
         winer_label = Label(result, text="Zwycięzca gry:Gracz", font=("Arial", 15))
@@ -58,6 +61,7 @@ def main():
     global result
     global ai_pick_label
     global winer_label
+    global numbers
     numbers=0
     wins=0
     losses=0
@@ -68,7 +72,9 @@ def main():
     root=Tk()
     root.title('GRA "PAPIER, KAMIEŃ, NOŻYCZKI"')
     root.iconbitmap("logo.ico")
-    root.geometry("641x522")
+    root.geometry("692x522")
+    root.resizable(False,False)
+
     img1=ImageTk.PhotoImage(Image.open("papier.jpg"))
     img2=ImageTk.PhotoImage(Image.open("kamien.jpg"))
     img3=ImageTk.PhotoImage(Image.open("nozyczki.jpg"))
@@ -89,7 +95,7 @@ def main():
     pick3.grid(row=1, column=3)
 
     # play button
-    play_btn = Button(frame, text="PLAY", font=("Arial", 20, "bold"), borderwidth=2, relief="solid", padx=100, pady=5, command=lambda: checkResult(playerHand))
+    play_btn = Button(frame, text="PLAY", font=("Arial", 20, "bold"), borderwidth=2, relief="solid", padx=100, pady=5, command=lambda: checkResult(playerHand,numbers))
     play_btn.grid(row=3, columnspan=4,pady=20)
 
     # score element
