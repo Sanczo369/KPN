@@ -5,3 +5,10 @@ dwie osoby starają się pokonać siebie przez wybór jednej z trzech opcji: kam
 ## Technologie
 - Python
 - Tkinter
+
+## Opis Projektu
+Aplikacja wyświetla 
+- ilość gier
+- ilość zwycięstw/przegranych/remisów
+- wybór gracza
+- wybór AI
